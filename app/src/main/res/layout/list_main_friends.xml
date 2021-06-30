@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/itemList_Size"
+    android:background="@drawable/borderline"
+    android:padding="10dp"
+    android:weightSum="1"
+    android:backgroundTint="@color/black">
+
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/borderline"
+        android:scaleType="center"
+        android:src="#ffffff"
+        android:layout_gravity="center_vertical"/>
+    <TextView
+        android:id="@+id/tv_profile_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="이름"
+        android:textSize="@dimen/userList_name"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="center_vertical"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:id="@+id/tv_profile_msg"
+        android:text="message"
+        android:textColor="@color/white"
+        android:textSize="@dimen/userList_content"
+        android:layout_gravity="center_vertical"
+        />
+
+
+</LinearLayout>
