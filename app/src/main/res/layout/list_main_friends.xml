@@ -13,8 +13,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/borderline"
-        android:scaleType="center"
-        android:src="#ffffff"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_baseline_android_24"
         android:layout_gravity="center_vertical"/>
     <TextView
         android:id="@+id/tv_profile_name"
