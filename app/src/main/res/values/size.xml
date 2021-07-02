@@ -8,4 +8,6 @@
     <dimen name="userList_content">18sp</dimen>
     <dimen name="contentText_big_Size">24sp</dimen>
     <dimen name="contentText_small_Size">18sp</dimen>
+
+    <dimen name="inputText_size">24sp</dimen>
 </resources>

@@ -15,12 +15,19 @@ import java.util.ArrayList;
  */
 public class profile_item {
 
+    private String idToken;
     private String id;
     private String name;
     private String phone;
     private String profile_img;
     private String profile_bg;
     private String profile_msg;
+    private int list_chatRoom;
+    private int list_friends;
+
+    public profile_item(){
+
+    }
 
     public profile_item(String id, String name, String phone, String profile_img, String profile_bg, String profile_msg) {
         this.id = id;
@@ -29,6 +36,16 @@ public class profile_item {
         this.profile_img = profile_img;
         this.profile_bg = profile_bg;
         this.profile_msg = profile_msg;
+        this.list_chatRoom = 0;
+        this.list_friends = 0;
+    }
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
     }
 
     public String getId() {
@@ -77,5 +94,21 @@ public class profile_item {
 
     public void setProfile_msg(String profile_msg) {
         this.profile_msg = profile_msg;
+    }
+
+    public int getList_chatRoom() {
+        return list_chatRoom;
+    }
+
+    public void setList_chatRoom(int list_chatRoom) {
+        this.list_chatRoom = list_chatRoom;
+    }
+
+    public int getList_friends() {
+        return list_friends;
+    }
+
+    public void setList_friends(int list_friends) {
+        this.list_friends = list_friends;
     }
 }
