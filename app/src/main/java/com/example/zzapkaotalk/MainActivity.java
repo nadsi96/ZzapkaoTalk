@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,12 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tv_mainTitle;
 
+    private String idToken, userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tv_mainTitle = findViewById(R.id.tv_mainTitle);
+
+        Intent intent = getIntent();
+        idToken = intent.getStringExtra("idToken");
+        userId = intent.getStringExtra("userId");
+
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        frag_friends = new Frag_Friends();
-        frag_message = new Frag_Message();
+        frag_friends = new Frag_Friends(idToken, userId);
+        frag_message = new Frag_Message(idToken, userId);
 
         setFrag(1); // Frag_Friends를 첫 화면으로
     }

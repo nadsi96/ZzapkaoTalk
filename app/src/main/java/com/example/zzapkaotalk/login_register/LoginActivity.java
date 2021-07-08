@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                id = id + "@Zzap.com";
                 // 로그인 요청, 결과 동작
                 firebaseAuth.signInWithEmailAndPassword(id, pw).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                             intent.putExtra("idToken", firebaseUser.getUid());
-                            intent.putExtra("UserId", firebaseUser.getEmail());
+                            intent.putExtra("userId", firebaseUser.getEmail());
                             startActivity(intent);
                             finish();
                         }else{

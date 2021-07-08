@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth; // 파이어베이스 인증 처리
@@ -63,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "번호에 숫자만 입력해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                userId = userId + "@Zzap.com";
 
                 firebaseAuth = FirebaseAuth.getInstance();
                 databaseReference = FirebaseDatabase.getInstance().getReference("ZzapKaoTalk");
@@ -81,8 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
                             userAccount.setId(firebaseUser.getEmail());
                             userAccount.setName(userName);
                             userAccount.setPhone(userPhone);
-                            userAccount.setList_chatRoom(0);
-                            userAccount.setList_friends(0);
+                            userAccount.setList_chatRoom(new ArrayList<>());
+                            userAccount.setList_friends(new ArrayList<>());
                             userAccount.setProfile_bg("default");
                             userAccount.setProfile_img("default");
                             userAccount.setProfile_msg("");

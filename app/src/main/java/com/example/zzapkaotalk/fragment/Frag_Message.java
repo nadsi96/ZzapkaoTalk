@@ -15,6 +15,13 @@ public class Frag_Message extends Fragment {
 
     private View view;
 
+    private String idToken, userId;
+
+    public Frag_Message(String idToken, String userId){
+        this.idToken = idToken;
+        this.userId = userId;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
