@@ -61,7 +61,13 @@ public class Frag_Friends extends Fragment {
                 name.setText(item.getName());
                 msg.setText(item.getProfile_msg());
 
-
+                TextView countFriends = view.findViewById(R.id.tv_countFriends);
+                String countFriendsText = "친구 ";
+                if(item.getList_friends() == null)
+                    countFriendsText += "0";
+                else
+                    countFriendsText += item.getList_friends().size();
+                countFriends.setText(countFriendsText);
 
             }
 
