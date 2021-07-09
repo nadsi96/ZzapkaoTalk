@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zzapkaotalk.fragment.Frag_Friends;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Frag_Message frag_message;
 
     private TextView tv_mainTitle;
+    private ImageView img_addItem;
 
     private String idToken, userId;
     @Override
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tv_mainTitle = findViewById(R.id.tv_mainTitle);
+        img_addItem = findViewById(R.id.img_addItem);
 
         Intent intent = getIntent();
         idToken = intent.getStringExtra("idToken");
@@ -74,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
                 ft.replace(R.id.frame_main, frag_friends);
                 ft.commit();
                 tv_mainTitle.setText("친구");
+                img_addItem.setImageResource(R.drawable.ic_baseline_person_add_24);
                 break;
             case 2:
                 ft.replace(R.id.frame_main, frag_message);
                 ft.commit();
                 tv_mainTitle.setText("채팅");
+                img_addItem.setImageResource(R.drawable.ic_add_text);
                 break;
             default:
                 break;
