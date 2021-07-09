@@ -1,6 +1,8 @@
 package com.example.zzapkaotalk.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.zzapkaotalk.MainActivity;
 import com.example.zzapkaotalk.R;
+import com.example.zzapkaotalk.profile.profile_activity;
 import com.example.zzapkaotalk.profile.profile_item;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +60,8 @@ public class Frag_Friends extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Firebase database의 data 받아오는 곳
+
+                // 사용자 프로필 세팅
                 profile_item item = snapshot.getValue(profile_item.class);
 
                 ImageView img = userProfile.findViewById(R.id.img_profile);
@@ -69,13 +74,22 @@ public class Frag_Friends extends Fragment {
                 name.setText(item.getName());
                 msg.setText(item.getProfile_msg());
 
+                // 클릭 시 프로필 상세 페이지 이동
+                userProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        set_profileClicked(item, true);
+                    }
+                });
+
+                // 친구 목록에 있는 친구 수, 친구들 프로필 추가
                 TextView countFriends = view.findViewById(R.id.tv_countFriends);
                 String countFriendsText = "친구 ";
                 if(item.getList_friends() == null)
                     countFriendsText += "0";
                 else{
                     countFriendsText += item.getList_friends().size();
-                    set_FriendList(item);
+                    set_FriendList(item); // 친구들 프로필 추가
                 }
 
                 countFriends.setText(countFriendsText); // 친구 수
@@ -91,7 +105,7 @@ public class Frag_Friends extends Fragment {
         return view;
     }
 
-    // 친구 목록에 칭구들 추가
+    // 친구 목록에 칭구들 프로필 추가
     private void set_FriendList(profile_item item){
         for(String friends_idToken : item.getList_friends()){
             databaseReference.child(friends_idToken).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -111,6 +125,12 @@ public class Frag_Friends extends Fragment {
                     friend_msg.setText(friend.getProfile_msg());
 
                     main_friendList_View.addView(new_friend);
+                    new_friend.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            set_profileClicked(friend, false);
+                        }
+                    });
                 }
 
                 @Override
@@ -119,5 +139,13 @@ public class Frag_Friends extends Fragment {
                 }
             });
         }
+    }
+
+    // 클릭시 프로필 상세 페이지 이동
+    private void set_profileClicked(profile_item profile, boolean isUser){
+        Intent intent = new Intent(getContext(), profile_activity.class);
+        intent.putExtra("profile", profile);
+        intent.putExtra("isUser", isUser); // 사용자면 true, 아니면 false 전달
+        startActivity(intent);
     }
 }

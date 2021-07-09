@@ -1,5 +1,6 @@
 package com.example.zzapkaotalk.profile;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 친구목록 [ ]
 채팅방 목록 [ ]
  */
-public class profile_item {
+public class profile_item implements Serializable {
 
     private String idToken;
     private String id;
