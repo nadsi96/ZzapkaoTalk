@@ -6,6 +6,8 @@
 
     <dimen name="userList_name">30sp</dimen>
     <dimen name="userList_content">18sp</dimen>
+
+    <dimen name="contentTitle">30sp</dimen>
     <dimen name="contentText_big_Size">24sp</dimen>
     <dimen name="contentText_small_Size">18sp</dimen>
 

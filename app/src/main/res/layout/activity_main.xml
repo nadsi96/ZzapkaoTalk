@@ -23,7 +23,7 @@
             android:fontFamily="sans-serif"
             android:text="채팅"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="@dimen/contentTitle"
             android:textStyle="bold" />
 
         <ImageView

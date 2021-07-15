@@ -55,6 +55,7 @@ public class Frag_Friends extends Fragment {
 
         database = FirebaseDatabase.getInstance(); // Firebase Database 연동
 
+
         databaseReference = database.getReference("ZzapKaoTalk/UserAccount/"); // 해당 document 연결
         databaseReference.child(idToken).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZzapKaoTalk">
-        <activity android:name=".login_register.RegisterActivity">
-
-        </activity>
+        <activity android:name=".fragment.addItem.AddItem"></activity>
+        <activity android:name=".fragment.addItem.AddFriend"></activity>
+        <activity android:name=".login_register.RegisterActivity"></activity>
         <activity android:name=".login_register.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".profile.profile_activity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

@@ -8,11 +8,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zzapkaotalk.fragment.Frag_Friends;
 import com.example.zzapkaotalk.fragment.Frag_Message;
+import com.example.zzapkaotalk.fragment.addItem.AddFriend;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView img_addItem;
 
     private String idToken, userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,15 +81,35 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 tv_mainTitle.setText("친구");
                 img_addItem.setImageResource(R.drawable.ic_baseline_person_add_24);
+                img_addItem.setOnClickListener(addFriend);
                 break;
             case 2:
                 ft.replace(R.id.frame_main, frag_message);
                 ft.commit();
                 tv_mainTitle.setText("채팅");
                 img_addItem.setImageResource(R.drawable.ic_add_text);
+                img_addItem.setOnClickListener(addChatRoom);
                 break;
             default:
                 break;
         }
     }
+
+    View.OnClickListener addFriend = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this, AddFriend.class);
+            intent.putExtra("idToken", idToken);
+            intent.putExtra("userId", userId);
+
+            startActivity(intent);
+        }
+    };
+
+    View.OnClickListener addChatRoom = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
 }

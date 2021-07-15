@@ -13,7 +13,7 @@ import com.example.zzapkaotalk.R;
 
 public class profile_activity extends AppCompatActivity {
 
-    ImageView img_profile, img_profile_bg;
+    ImageView img_profile, img_profile_bg, img_profile_exit;
     TextView tv_profile_name, tv_profile_msg;
 
     profile_item profile;
@@ -26,6 +26,7 @@ public class profile_activity extends AppCompatActivity {
 
         img_profile_bg = findViewById(R.id.img_profile_bg);
         img_profile = findViewById(R.id.img_profile);
+        img_profile_exit = findViewById(R.id.img_profile_exit);
         tv_profile_msg = findViewById(R.id.tv_profile_msg);
         tv_profile_name = findViewById(R.id.tv_profile_name);
 
@@ -44,6 +45,13 @@ public class profile_activity extends AppCompatActivity {
             findViewById(R.id.btn_1on1chat).setVisibility(View.GONE);
         }
 
-        findViewById(R.id.img_profile_exit).bringToFront(); // 화면 맨 위에 출력
+        img_profile_exit.bringToFront(); // 화면 맨 위에 출력
+        img_profile_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 }
