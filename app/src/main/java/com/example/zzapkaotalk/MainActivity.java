@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.zzapkaotalk.fragment.Frag_Friends;
 import com.example.zzapkaotalk.fragment.Frag_Message;
 import com.example.zzapkaotalk.fragment.addItem.AddFriend;
+import com.example.zzapkaotalk.profile.profile_item;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String idToken, userId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         idToken = intent.getStringExtra("idToken");
         userId = intent.getStringExtra("userId");
-
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

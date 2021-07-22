@@ -17,17 +17,34 @@
         android:src="@drawable/ic_baseline_android_24"
         android:layout_gravity="center_vertical"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_toRightOf="@id/img_profile"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        >
+
         <TextView
             android:id="@+id/tv_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이름"
-            android:textSize="@dimen/userList_name"
+            android:textSize="24sp"
             android:textColor="@color/white"
-            android:layout_toRightOf="@id/img_profile"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_profile_id"
+            android:text="Email"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
