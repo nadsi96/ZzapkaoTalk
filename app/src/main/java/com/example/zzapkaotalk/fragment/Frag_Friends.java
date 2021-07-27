@@ -62,6 +62,8 @@ public class Frag_Friends extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Firebase database의 data 받아오는 곳
 
+                Log.i("userID", snapshot.toString());
+                Log.i("databaseReference", databaseReference.child(idToken).toString());
                 // 사용자 프로필 세팅
                 profile_item item = snapshot.getValue(profile_item.class);
 
@@ -108,11 +110,18 @@ public class Frag_Friends extends Fragment {
 
     // 친구 목록에 칭구들 프로필 추가
     private void set_FriendList(profile_item item){
-        for(String friends_idToken : item.getList_friends()){
+        for(String friends_idToken : item.getList_friends().keySet()){
+            Log.i("friends_idToken", friends_idToken);
+            Log.i("databaseReference", databaseReference.toString());
+            Log.i("databaseReference", databaseReference.child(friends_idToken).toString());
+
             databaseReference.child(friends_idToken).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Log.i("dataSnapShot", snapshot.toString());
+
                     profile_item friend = snapshot.getValue(profile_item.class);
+
                     LinearLayout new_friend = (LinearLayout) View.inflate(getContext(), R.layout.list_main_friends, null);
 
                     ImageView friend_img = new_friend.findViewById(R.id.img_profile);
@@ -145,8 +154,11 @@ public class Frag_Friends extends Fragment {
     // 클릭시 프로필 상세 페이지 이동
     private void set_profileClicked(profile_item profile, boolean isUser){
         Intent intent = new Intent(getContext(), profile_activity.class);
-        intent.putExtra("profile", profile);
+
+        intent.putExtra("user_idToken", idToken); // 본인 idToken
+        intent.putExtra("profile", profile); // 상세보기하는 선택한 프로필
         intent.putExtra("isUser", isUser); // 사용자면 true, 아니면 false 전달
+
         startActivity(intent);
     }
 }

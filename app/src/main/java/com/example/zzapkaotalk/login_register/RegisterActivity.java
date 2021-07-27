@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -82,8 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
                             userAccount.setId(firebaseUser.getEmail());
                             userAccount.setName(userName);
                             userAccount.setPhone(userPhone);
-                            userAccount.setList_chatRoom(new ArrayList<>());
-                            userAccount.setList_friends(new ArrayList<>());
+                            userAccount.setList_chatRoom(new HashMap<>());
+                            userAccount.setList_friends(new HashMap<>());
                             userAccount.setProfile_bg("default");
                             userAccount.setProfile_img("default");
                             userAccount.setProfile_msg("");

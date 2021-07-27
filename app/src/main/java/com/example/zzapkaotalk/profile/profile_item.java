@@ -3,6 +3,7 @@ package com.example.zzapkaotalk.profile;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
 아이디
@@ -24,8 +25,8 @@ public class profile_item implements Serializable {
     private String profile_img;
     private String profile_bg;
     private String profile_msg;
-    private ArrayList<String> list_chatRoom;
-    private ArrayList<String> list_friends;
+    private HashMap<String, Boolean> list_chatRoom;
+    private HashMap<String, Boolean> list_friends;
 
     public profile_item(){
 
@@ -38,8 +39,8 @@ public class profile_item implements Serializable {
         this.profile_img = profile_img;
         this.profile_bg = profile_bg;
         this.profile_msg = profile_msg;
-        this.list_chatRoom = new ArrayList<>();
-        this.list_friends = new ArrayList<>();
+        this.list_chatRoom = new HashMap<>();
+        this.list_friends = new HashMap<>();
     }
 
     public String getIdToken() {
@@ -104,19 +105,19 @@ public class profile_item implements Serializable {
         this.profile_msg = profile_msg;
     }
 
-    public ArrayList<String> getList_chatRoom() {
+    public HashMap<String, Boolean> getList_chatRoom() {
         return list_chatRoom;
     }
 
-    public void setList_chatRoom(ArrayList<String> list_chatRoom) {
+    public void setList_chatRoom(HashMap<String, Boolean> list_chatRoom) {
         this.list_chatRoom = list_chatRoom;
     }
 
-    public ArrayList<String> getList_friends() {
+    public HashMap<String, Boolean> getList_friends() {
         return list_friends;
     }
 
-    public void setList_friends(ArrayList<String> list_friends) {
+    public void setList_friends(HashMap<String, Boolean> list_friends) {
         this.list_friends = list_friends;
     }
 }
