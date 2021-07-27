@@ -39,6 +39,8 @@ public class Frag_Friends extends Fragment {
     private String idToken, userId;
 
     private LinearLayout main_friendList_View;
+    private View userProfile;
+    TextView countFriends;
 
     public Frag_Friends(String idToken, String userId){
         this.idToken = idToken;
@@ -51,12 +53,26 @@ public class Frag_Friends extends Fragment {
         view = inflater.inflate(R.layout.main_frag_friends, container, false);
 
         main_friendList_View = view.findViewById(R.id.main_friendList_View);
-        View userProfile = view.findViewById(R.id.user_profile);
+        userProfile = view.findViewById(R.id.user_profile);
 
         database = FirebaseDatabase.getInstance(); // Firebase Database 연동
 
-
         databaseReference = database.getReference("ZzapKaoTalk/UserAccount/"); // 해당 document 연결
+
+        countFriends = view.findViewById(R.id.tv_countFriends);
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setView();
+    }
+
+    private void setView(){
+        main_friendList_View.removeAllViews();
+
         databaseReference.child(idToken).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -64,6 +80,7 @@ public class Frag_Friends extends Fragment {
 
                 Log.i("userID", snapshot.toString());
                 Log.i("databaseReference", databaseReference.child(idToken).toString());
+
                 // 사용자 프로필 세팅
                 profile_item item = snapshot.getValue(profile_item.class);
 
@@ -86,7 +103,6 @@ public class Frag_Friends extends Fragment {
                 });
 
                 // 친구 목록에 있는 친구 수, 친구들 프로필 추가
-                TextView countFriends = view.findViewById(R.id.tv_countFriends);
                 String countFriendsText = "친구 ";
                 if(item.getList_friends() == null)
                     countFriendsText += "0";
@@ -104,8 +120,6 @@ public class Frag_Friends extends Fragment {
                 Log.e("Call Data", "Fail...");
             }
         });
-
-        return view;
     }
 
     // 친구 목록에 칭구들 프로필 추가

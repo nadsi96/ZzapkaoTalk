@@ -82,7 +82,7 @@ public class AddFriend extends AddItem{
 
                             // 친구추가 버튼 클릭시 바로 친구 목록에 추가
                             // 검색 목록에서는 해당 프로필 삭제
-                            set_btnAddFriendClicked(new_friend, new_friend.findViewById(R.id.btn_addFriend));
+                            set_btnAddFriendClicked(new_friend, new_friend.findViewById(R.id.btn_addFriend), friend.getIdToken());
 
                             linearLayout.addView(new_friend);
                         }
@@ -140,11 +140,11 @@ public class AddFriend extends AddItem{
 
     // 친구 목록에 해당 친구 추가
     // 현재 검색목록에서 해당 친구 제거
-    private void set_btnAddFriendClicked(View view, Button btn){
+    private void set_btnAddFriendClicked(View view, Button btn, String friends_idToken){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View _view) {
+                databaseReference.child(idToken).child("list_friends").child(friends_idToken).setValue(true);
 
                 view.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();

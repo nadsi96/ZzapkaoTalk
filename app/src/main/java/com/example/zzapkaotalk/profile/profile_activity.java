@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.zzapkaotalk.R;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class profile_activity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class profile_activity extends AppCompatActivity {
     LinearLayout btn_editProfile, btn_1on1Chat, btn_addToList, btn_block;
 
     profile_item profile;
+    String idToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class profile_activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         profile = (profile_item)intent.getSerializableExtra("profile");
+        idToken = intent.getStringExtra("user_idToken");
         boolean isUser = intent.getBooleanExtra("isUser", false);
         boolean isNewFriend = intent.getBooleanExtra("isNew", false);
 
@@ -86,6 +89,12 @@ public class profile_activity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //친구 추가
+                    FirebaseDatabase.getInstance().
+                            getReference("ZzapKaoTalk/UserAccount/").
+                            child(idToken).
+                            child("list_friends").
+                            child(profile.getIdToken()).
+                            setValue(true);
 
                     Toast.makeText(profile_activity.this, "친구 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
                     set_profileMenu(false, false);
